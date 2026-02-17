@@ -1,26 +1,37 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: 255 255 255;
+  --foreground: 23 23 23;
+
+  /* Primary HSL: 221, 83%, 53% -> Converted to RGB for v4 opacity support if needed or just use hex/oklch */
+  /* Tailwind v4 prefers oklch or raw values. I'll stick to simple colors for now. */
+}
+
+/* Custom Utilities for Chat App */
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-gray-200 dark:bg-zinc-800 rounded-full;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-300 dark:bg-zinc-700;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply antialiased selection:bg-blue-100 dark:selection:bg-blue-900/40;
 }
